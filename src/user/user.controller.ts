@@ -10,8 +10,7 @@ import {
   Put,
 } from '@nestjs/common';
 import { CreateUserDTO } from './dto/create-user-dto';
-import { UpdateUserDTO } from './dto/update-user-dto';
-import { PatchUserDTO } from './dto/patch-user-dto copy';
+import { PatchUserDTO } from './dto/patch-user-dto ';
 import { UserService } from './user.service';
 
 @Controller('users')
@@ -24,15 +23,15 @@ export class UserController {
   }
   @Get()
   async read() {
-    return {};
+    return this.userService.list();
   }
   @Get(':id')
-  async readOne(@Param() params) {
-    return { params };
+  async readOne(@Param('id', ParseIntPipe) id: number) {
+    return this.userService.show(id);
   }
   @Put(':id')
-  async put(@Body() body: UpdateUserDTO, @Param() params) {
-    return { params };
+  async put(@Param('id', ParseIntPipe) id: number, @Body() user: PatchUserDTO) {
+    return this.userService.update(id, user);
   }
   @Patch(':id')
   async patch(@Body() body: PatchUserDTO, @Param() params) {
