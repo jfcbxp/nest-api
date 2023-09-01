@@ -14,6 +14,7 @@ import { CreateUserDTO } from './dto/create-user-dto';
 import { PatchUserDTO } from './dto/patch-user-dto ';
 import { UserService } from './user.service';
 import { LogInterceptor } from 'src/interceptors/log.interceptor';
+import { ParamId } from 'src/decorators/param-id.decorator';
 
 @Controller('users')
 export class UserController {
@@ -29,7 +30,7 @@ export class UserController {
     return this.userService.list();
   }
   @Get(':id')
-  async readOne(@Param('id', ParseIntPipe) id: number) {
+  async readOne(@ParamId() id: number) {
     return this.userService.show(id);
   }
   @UseInterceptors(LogInterceptor)
