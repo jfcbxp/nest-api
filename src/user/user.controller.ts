@@ -8,15 +8,18 @@ import {
   Patch,
   Post,
   Put,
+  UseInterceptors,
 } from '@nestjs/common';
 import { CreateUserDTO } from './dto/create-user-dto';
 import { PatchUserDTO } from './dto/patch-user-dto ';
 import { UserService } from './user.service';
+import { LogInterceptor } from 'src/interceptors/log.interceptor';
 
 @Controller('users')
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
+  @UseInterceptors(LogInterceptor)
   @Post()
   async create(@Body() body: CreateUserDTO) {
     return this.userService.create(body);
@@ -29,6 +32,7 @@ export class UserController {
   async readOne(@Param('id', ParseIntPipe) id: number) {
     return this.userService.show(id);
   }
+  @UseInterceptors(LogInterceptor)
   @Put(':id')
   async put(@Param('id', ParseIntPipe) id: number, @Body() user: PatchUserDTO) {
     return this.userService.update(id, user);
