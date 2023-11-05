@@ -1,9 +1,5 @@
-import {
-  Injectable,
-  NestInterceptor,
-  ExecutionContext,
-  CallHandler,
-} from '@nestjs/common';
+/* eslint-disable @typescript-eslint/no-explicit-any, no-console */
+import { Injectable, NestInterceptor, ExecutionContext, CallHandler } from '@nestjs/common';
 import { Observable, tap } from 'rxjs';
 
 @Injectable()
@@ -14,7 +10,7 @@ export class LogInterceptor implements NestInterceptor {
     return next.handle().pipe(
       tap({
         next: (x) => {
-          let request = context.switchToHttp().getRequest();
+          const request = context.switchToHttp().getRequest();
           console.log(`Url ${request.url}`);
           console.log(`Execução levou ${Date.now() - dt}`);
         },

@@ -1,11 +1,13 @@
+/* eslint-disable no-unused-vars, no-useless-constructor, no-empty-function */
 import { Injectable } from '@nestjs/common';
+import { PrismaService } from '../prisma/prisma.service';
 import { CreateUserDTO } from './dto/create-user-dto';
-import { PrismaService } from 'src/prisma/prisma.service';
-import { PatchUserDTO } from './dto/patch-user-dto ';
+import { PatchUserDTO } from './dto/patch-user-dto';
 
 @Injectable()
 export class UserService {
   constructor(private readonly prisma: PrismaService) {}
+
   async create({ name, email, password }: CreateUserDTO) {
     return this.prisma.user.create({
       data: {

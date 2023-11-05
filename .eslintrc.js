@@ -1,25 +1,48 @@
 module.exports = {
   parser: '@typescript-eslint/parser',
-  parserOptions: {
-    project: 'tsconfig.json',
-    tsconfigRootDir: __dirname,
-    sourceType: 'module',
-  },
-  plugins: ['@typescript-eslint/eslint-plugin'],
-  extends: [
-    'plugin:@typescript-eslint/recommended',
-    'plugin:prettier/recommended',
-  ],
-  root: true,
   env: {
+    es2021: true,
     node: true,
     jest: true,
   },
-  ignorePatterns: ['.eslintrc.js'],
+  plugins: ['@typescript-eslint', 'prettier'],
+  extends: ['airbnb-base', 'plugin:@typescript-eslint/recommended', 'prettier'],
+  parserOptions: {
+    project: './tsconfig.json'
+  },
+  settings: {
+    'import/resolver': {
+      node: {
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+      },
+    },
+  },
   rules: {
-    '@typescript-eslint/interface-name-prefix': 'off',
-    '@typescript-eslint/explicit-function-return-type': 'off',
-    '@typescript-eslint/explicit-module-boundary-types': 'off',
-    '@typescript-eslint/no-explicit-any': 'off',
+    'prettier/prettier': 'error',
+    'no-console': 'warn',
+    'import/extensions': 'off',
+    'class-methods-use-this': 'off',
+    'object-curly-newline': [
+      'warn',
+      {
+        'ObjectExpression': { 'consistent': true, 'multiline': true },
+        'ObjectPattern': { 'consistent': true, 'multiline': true },
+        'ImportDeclaration': 'never',
+        'ExportDeclaration': { 'multiline': true, 'minProperties': 3 }
+      }
+    ],
+    'implicit-arrow-linebreak': 'off',
+    'function-paren-newline': 'off',
+    'no-restricted-syntax': 'off',
+    'import/no-unresolved': 'warn',
+    'prefer-destructuring': ['error', { array: false, object: true }],
+    'no-unused-vars': 'warn',
+    'import/prefer-default-export': 'off',
+    'import/no-named-as-default-member': 'off',
+    '@typescript-eslint/no-explicit-any': 'error',
+    'max-len': ['warn', { code: 120, ignoreStrings: true, ignoreTemplateLiterals: true }],
+    'no-useless-constructor': 'warn',
+    'arrow-body-style': 'off',
+    camelcase: 'off',
   },
 };

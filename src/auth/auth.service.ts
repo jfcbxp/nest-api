@@ -1,20 +1,30 @@
+/* eslint-disable no-unused-vars, no-useless-constructor, no-empty-function */
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { PrismaService } from 'src/prisma/prisma.service';
+import { User } from '@prisma/client';
+import { PrismaService } from '../prisma/prisma.service';
+import { AuthRegisterDTO } from './dto/auth-register.dto';
+import { UserService } from '../user/user.service';
 
 @Injectable()
 export class AuthService {
   constructor(
     private readonly jwtService: JwtService,
     private readonly prisma: PrismaService,
+    private readonly userService: UserService,
   ) {}
 
-  async createToken() {}
-
-  async checkToken(token: string) {}
+  async createToken(user: User) {
+    return {
+      accessToken: this.jwtService.sign({
+        sub: user.id,
+        name: user.name,
+      }),
+    };
+  }
 
   async login(email: string, password: string) {
-    let user = await this.prisma.user.findFirst({
+    const user = await this.prisma.user.findFirst({
       where: {
         email,
         password,
@@ -23,11 +33,11 @@ export class AuthService {
 
     if (!user) throw new UnauthorizedException('Email e/ou senha incorretos');
 
-    return user;
+    return this.createToken(user);
   }
 
   async forget(email: string) {
-    let user = await this.prisma.user.findFirst({
+    const user = await this.prisma.user.findFirst({
       where: {
         email,
       },
@@ -38,14 +48,21 @@ export class AuthService {
     return user;
   }
 
-  async reset(password: string, token: string) {
-    let id = 0;
-
-    await this.prisma.user.update({
+  async reset(password: string) {
+    // TODO Validar Token
+    const user = await this.prisma.user.update({
       where: {
-        id,
+        id: 0,
       },
       data: { password },
     });
+
+    return this.createToken(user);
+  }
+
+  async register(data: AuthRegisterDTO) {
+    const user = await this.userService.create(data);
+
+    return this.createToken(user);
   }
 }
