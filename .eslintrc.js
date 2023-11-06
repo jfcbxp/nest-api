@@ -18,7 +18,20 @@ module.exports = {
     },
   },
   rules: {
-    'prettier/prettier': 'error',
+    'prettier/prettier': [
+      'error',
+      {
+        trailingComma: 'all',
+        arrowParens: 'always',
+        endOfLine: 'lf',
+        quoteProps: 'consistent',
+        tabWidth: 2,
+        printWidth: 120,
+        semi: true,
+        singleQuote: true,
+        bracketSpacing: true,
+      },
+    ],
     'no-console': 'warn',
     'import/extensions': 'off',
     'class-methods-use-this': 'off',

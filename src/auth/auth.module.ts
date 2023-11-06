@@ -9,7 +9,7 @@ import { AuthService } from './auth.service';
   imports: [
     JwtModule.register({
       secret: '2D]s*o?yFZQYa#T^s^Lcw+ac-Yw>4}U#',
-      signOptions: { expiresIn: '60s', issuer: 'Api Nest', audience: 'users' },
+      signOptions: { expiresIn: '60s', issuer: 'login', audience: 'users' },
     }),
     UserModule,
     PrismaModule,
