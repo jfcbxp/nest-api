@@ -23,7 +23,7 @@ export class AuthService {
     };
   }
 
-  async checkToken(token: string) {
+  checkToken(token: string) {
     try {
       const response = this.jwtService.verify(token, {
         audience: 'users',
@@ -33,6 +33,16 @@ export class AuthService {
       return response;
     } catch (e) {
       throw new BadRequestException(e);
+    }
+  }
+
+  isValidToken(token: string) {
+    try {
+      this.checkToken(token);
+
+      return true;
+    } catch (e) {
+      return false;
     }
   }
 

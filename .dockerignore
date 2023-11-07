@@ -1,0 +1,12 @@
+Dockerfile
+.gitignore
+
+**/node_modules/
+**/.git
+**/README.md
+**/LICENSE
+**/.vscode
+**/npm-debug.log
+**/coverage
+**/.editorconfig
+**/.aws
