@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-vars, no-useless-constructor, no-empty-function */
-
 import { Body, Controller, Post, UseGuards } from '@nestjs/common';
 import { AuthLoginDTO } from './dto/auth-login.dto';
 import { AuthRegisterDTO } from './dto/auth-register.dto';

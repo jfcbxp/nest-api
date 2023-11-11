@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any, no-console, no-unused-vars */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Injectable, NestInterceptor, ExecutionContext, CallHandler } from '@nestjs/common';
 import { Observable, tap } from 'rxjs';
 

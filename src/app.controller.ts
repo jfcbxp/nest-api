@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars, no-useless-constructor, no-empty-function */
 import { Controller, Get, Post } from '@nestjs/common';
 import { AppService } from './app.service';
 

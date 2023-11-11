@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars, no-useless-constructor, no-empty-function */
 import { BadRequestException, Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { User } from '@prisma/client';

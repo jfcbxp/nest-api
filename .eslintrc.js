@@ -8,7 +8,7 @@ module.exports = {
   plugins: ['@typescript-eslint', 'prettier'],
   extends: ['airbnb-base', 'plugin:@typescript-eslint/recommended', 'prettier'],
   parserOptions: {
-    project: './tsconfig.json'
+    project: './tsconfig.json',
   },
   settings: {
     'import/resolver': {
@@ -38,24 +38,30 @@ module.exports = {
     'object-curly-newline': [
       'warn',
       {
-        'ObjectExpression': { 'consistent': true, 'multiline': true },
-        'ObjectPattern': { 'consistent': true, 'multiline': true },
-        'ImportDeclaration': 'never',
-        'ExportDeclaration': { 'multiline': true, 'minProperties': 3 }
-      }
+        ObjectExpression: { consistent: true, multiline: true },
+        ObjectPattern: { consistent: true, multiline: true },
+        ImportDeclaration: 'never',
+        ExportDeclaration: { multiline: true, minProperties: 3 },
+      },
     ],
     'implicit-arrow-linebreak': 'off',
     'function-paren-newline': 'off',
     'no-restricted-syntax': 'off',
     'import/no-unresolved': 'warn',
     'prefer-destructuring': ['error', { array: false, object: true }],
-    'no-unused-vars': 'warn',
     'import/prefer-default-export': 'off',
     'import/no-named-as-default-member': 'off',
     '@typescript-eslint/no-explicit-any': 'error',
     'max-len': ['warn', { code: 120, ignoreStrings: true, ignoreTemplateLiterals: true }],
-    'no-useless-constructor': 'warn',
     'arrow-body-style': 'off',
-    camelcase: 'off',
+    'camelcase': 'off',
+    'no-shadow': 'off',
+    '@typescript-eslint/no-shadow': 'warn',
+    'no-unused-vars': 'off',
+    '@typescript-eslint/no-unused-vars': ['error'],
+    'no-empty-function': 'off',
+    '@typescript-eslint/no-empty-function': 'error',
+    'no-useless-constructor': 'off',
+    '@typescript-eslint/no-useless-constructor': 'error',
   },
 };

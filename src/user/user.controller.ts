@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars, no-useless-constructor, no-empty-function */
 import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post, Put, UseInterceptors } from '@nestjs/common';
 import { CreateUserDTO } from './dto/create-user-dto';
 import { PatchUserDTO } from './dto/patch-user-dto';
